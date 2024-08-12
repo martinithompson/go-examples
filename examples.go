@@ -77,6 +77,16 @@ func main() {
 	// delete from a map
 	delete(heroes, "The Flash")
 
+	// generics example
+	fmt.Println("5 + 4 = ", getSumGen(5, 4))
+	fmt.Println("5.7 + 4.8 = ", getSumGen(5.7, 4.8))
+
+	// struct example
+	var tS customer
+	tS.name = "Tom Smith"
+	tS.address = "5 main street"
+	tS.bal = 2345.43
+
 }
 
 // simple pointer example
@@ -98,4 +108,21 @@ func getAverage(nums ...float64) float64 {
 		sum += val
 	}
 	return sum / float64(len(nums))
+}
+
+// generics
+type MyContstraint interface {
+	int | float64
+}
+
+func getSumGen[T MyContstraint](x T, y T) T {
+	return x + y
+}
+
+// structs - like classes
+
+type customer struct {
+	name    string
+	address string
+	bal     float64
 }
