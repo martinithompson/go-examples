@@ -1,51 +1,83 @@
 package main
 
-// func main() {
-// 	string1 := "Hello, World"
-// 	string2 := "hello, world"
+import (
+	"fmt"
+	"strings"
+)
 
-// 	// case insensitive match
-// 	fmt.Println(strings.EqualFold(string1, string2))
+func main() {
+	string1 := "Hello, World"
+	string2 := "hello, world"
 
-// 	// index
-// 	wIndex := strings.Index(string1, "W")
-// 	fmt.Println(wIndex)
+	// case insensitive match
+	fmt.Println(strings.EqualFold(string1, string2))
 
-// 	// replace (1 replacement)
-// 	fmt.Println(strings.Replace(string1, "World", "Martin", 1))
+	// index
+	wIndex := strings.Index(string1, "W")
+	fmt.Println(wIndex)
 
-// 	temperatureC := 32.0
-// 	// temperatureK := 0.0
+	// replace (1 replacement)
+	fmt.Println(strings.Replace(string1, "World", "Martin", 1))
 
-// 	temperatureF := temperatureC*9/5 + 32
-// 	fmt.Println(temperatureF)
+	temperatureC := 32.0
+	// temperatureK := 0.0
 
-// 	// call pointer example
-// 	myInt := 5
-// 	changeVal(&myInt)
-// 	fmt.Println("changed val via pointer", myInt)
+	temperatureF := temperatureC*9/5 + 32
+	fmt.Println(temperatureF)
 
-// 	// more pointer examples
-// 	f4 := 10
-// 	var f4Ptr *int = &f4
+	// call pointer example
+	myInt := 5
+	changeVal(&myInt)
+	fmt.Println("changed val via pointer", myInt)
 
-// 	fmt.Println("f4 address :", f4Ptr)
-// 	fmt.Println("f4 value :", *f4Ptr)
+	// more pointer examples
+	f4 := 10
+	var f4Ptr *int = &f4
 
-// 	fmt.Println("f4 before func :", f4)
-// 	changeVal(&f4)
-// 	fmt.Println("f4 after func :", f4)
+	fmt.Println("f4 address :", f4Ptr)
+	fmt.Println("f4 value :", *f4Ptr)
 
-// 	// double array in place example
-// 	pArr := [4]int{1, 2, 3, 4}
-// 	dblArrayVals(&pArr)
-// 	fmt.Println(pArr)
+	fmt.Println("f4 before func :", f4)
+	changeVal(&f4)
+	fmt.Println("f4 after func :", f4)
 
-// 	// slice varadic example
-// 	iSlice := []float64{11, 13, 17}
-// 	fmt.Println(getAverage(iSlice...))
+	// double array in place example
+	pArr := [4]int{1, 2, 3, 4}
+	dblArrayVals(&pArr)
+	fmt.Println(pArr)
 
-// }
+	// slice varadic example
+	iSlice := []float64{11, 13, 17}
+	fmt.Println(getAverage(iSlice...))
+
+	// map example
+	// var myMap map [keyType]valueType
+
+	var heroes map[string]string
+	heroes = make(map[string]string)
+	villains := make(map[string]string)
+
+	heroes["Batman"] = "Bruce Wayne"
+	heroes["Superman"] = "Clark Kent"
+	heroes["The Flash"] = "Barry Allen"
+	villains["Lex Luthor"] = "Lex Luthor"
+
+	superPets := map[int]string{1: "Krypto", 2: "Bat hound"}
+
+	fmt.Printf("batman is: %v\n", heroes["Batman"])
+	fmt.Printf("Chip is: %v\n", superPets[3])
+
+	_, ok := superPets[3]
+	fmt.Println("Is there a 3rd pet: ", ok)
+
+	// range over a map
+	for k, v := range heroes {
+		fmt.Printf("%s is %s\n", k, v)
+	}
+	// delete from a map
+	delete(heroes, "The Flash")
+
+}
 
 // simple pointer example
 func changeVal(myPointer *int) {
