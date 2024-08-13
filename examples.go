@@ -87,6 +87,18 @@ func main() {
 	tS.address = "5 main street"
 	tS.bal = 2345.43
 
+	// call tsp to ML using defined types
+	fmt.Printf("3 tsp = %.2f mL\n", tspToML(3))
+
+	// using associate method - better way
+	tsp1 := Tsp(3)
+	fmt.Printf("3 tsp = %.2f mL\n", tsp1.ToMLs())
+
+	// using interface example
+	var kitty Animal
+	kitty = Cat("Kitty")
+	kitty.AngrySound()
+
 }
 
 // simple pointer example
@@ -120,9 +132,46 @@ func getSumGen[T MyContstraint](x T, y T) T {
 }
 
 // structs - like classes
-
 type customer struct {
 	name    string
 	address string
 	bal     float64
+}
+
+// defined types
+type Tsp float64
+type TBs float64
+type ML float64
+
+func tspToML(tsp Tsp) ML {
+	return ML(tsp * 4.92)
+}
+
+// better solution to above function - using associate methods:
+func (tsp Tsp) ToMLs() ML {
+	return ML(tsp * 4.92)
+}
+
+// interface example
+type Animal interface {
+	AngrySound()
+	HappySound()
+}
+
+type Cat string
+
+func (c Cat) Attack() {
+	fmt.Println("cat attacks its prey")
+}
+
+func (c Cat) Name() string {
+	return string(c)
+}
+
+func (c Cat) AngrySound() {
+	fmt.Println("cat says hiss")
+}
+
+func (c Cat) HappySound() {
+	fmt.Println("cat says meow")
 }
